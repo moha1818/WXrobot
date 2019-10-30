@@ -21,7 +21,7 @@ public class TestScheduled {
 
     private static String[] NAMES = {"沈健力","毛泽威","黄秀娟","程月娇","吴树根","缪世伟"};
     private static String[] MOBILES = {"15757116539","15728007839","18858090722","15067480436","13065632439","15257890108"};
-    private int dayIndex = 2;
+    private int dayIndex = 3;
     private int weekIndex = 0;
     @Scheduled(cron = "0 0 9 * * ?")
     public void testTasks() {
