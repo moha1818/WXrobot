@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.util;
 
 import org.apache.http.*;
 import org.apache.http.client.ClientProtocolException;

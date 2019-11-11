@@ -1,6 +1,5 @@
 package com.example.demo.scheduled;
 
-import com.example.demo.HttpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
