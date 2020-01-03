@@ -19,8 +19,8 @@ import java.util.Map;
 public class TestScheduled {
     public static String WEBHOOK_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=89a51df2-07eb-4a81-91da-2d6a1912bed2";
 
-    public static String[] NAMES = {"沈健力","毛泽威","黄秀娟","程月娇","吴树根","缪世伟"};
-    private static String[] MOBILES = {"15757116539","15728007839","18858090722","15067480436","13065632439","15257890108"};
+    public static String[] NAMES = {"沈健力","毛泽威","黄秀娟","程月娇","吴树根","金陈天"};
+    private static String[] MOBILES = {"15757116539","15728007839","18858090722","15067480436","13065632439","13575546447"};
 //    private int dayIndex = 3;
     private int weekIndex = 0;
     //每周一
