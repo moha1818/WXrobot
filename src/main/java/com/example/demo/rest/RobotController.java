@@ -1,6 +1,9 @@
 package com.example.demo.rest;
 
+import com.example.demo.config.DrillColumn;
 import com.example.demo.scheduled.TestScheduled;
+import com.example.demo.service.ElasticSearchService;
+import com.example.demo.service.impl.ElasticSearchServiceImpl;
 import com.example.demo.util.PropertiesUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,11 +23,26 @@ public class RobotController {
     @Autowired
     private TestScheduled testScheduled;
 
+//    @Autowired
+//    private ElasticSearchService elasticSearchService;
+
     @RequestMapping("/next")
-    public String next(){
+    public void next(){
         //testScheduled.next();
-        return "1";
+//        DrillColumn drill = new DrillColumn();
+//        drill.setElementName("a");
+//        drill.setElementQueryName("b");
+//        drill.setElementValue("c");
+        //return elasticSearchService.insert("dataextra",drill);
     }
+
+//    @RequestMapping("/get")
+//    public Object get(){
+//        //testScheduled.next();
+//        DrillColumn drill = elasticSearchService.findById("dataextra","FTme_m4BV8izRHdWxmRy",DrillColumn.class);
+//
+//        return drill;
+//    }
 
     @RequestMapping("/test")
     public String test(){
