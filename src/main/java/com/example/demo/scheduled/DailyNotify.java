@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
  * @author: moha
  * @create: 2020-02-11 15:14
  */
-@Component
-@EnableScheduling
+//@Component
+//@EnableScheduling
 public class DailyNotify {
     public static String WEBHOOK_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=89a51df2-07eb-4a81-91da-2d6a1912bed2";
 

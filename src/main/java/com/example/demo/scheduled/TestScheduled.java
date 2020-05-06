@@ -17,7 +17,7 @@ import java.util.Map;
 @Component
 @EnableScheduling
 public class TestScheduled {
-    public static String WEBHOOK_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=89a51df2-07eb-4a81-91da-2d6a1912bed2";
+    public static String WEBHOOK_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=bada4714-d432-49ac-86b3-090d6e016e43";
 
     public static String[] NAMES = {"沈健力","毛泽威","黄秀娟","程月娇","金陈天","竺祯炜","赵万梓"};
     private static String[] MOBILES = {"15757116539","15728007839","18858090722","15067480436","13575546447","18868945424","15258316988"};
