@@ -19,8 +19,11 @@ import java.util.Map;
 public class TestScheduled {
     public static String WEBHOOK_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=bada4714-d432-49ac-86b3-090d6e016e43";
 
-    public static String[] NAMES = {"沈健力","毛泽威","黄秀娟","程月娇","金陈天","竺祯炜","赵万梓"};
-    private static String[] MOBILES = {"15757116539","15728007839","18858090722","15067480436","13575546447","18868945424","15258316988"};
+    public static String SJZ_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=6258d09a-6244-4858-95e0-54d738b2b2d7";
+
+    private static String soupUrl = "https://api.qinor.cn/soup/";
+    public static String[] NAMES = {"沈健力","毛泽威","黄秀娟","程月娇","何胜东","赵万梓","刘婷","潘维健"};
+    private static String[] MOBILES = {"15757116539","15728007839","18858090722","15067480436","18815287551","15258316988","17636218668","15867461151"};
 //    private int dayIndex = 3;
     private int weekIndex = 0;
     //每周一
@@ -73,4 +76,28 @@ public class TestScheduled {
         System.out.println(content);
         return content;
     }
+
+
+    //周一至周五上班时间
+    @Scheduled(cron = "0 15 9 ? * MON-FRI")
+    public void everyDay() {
+        String content = ack1();
+
+        System.out.println(HttpUtil.doPost(SJZ_TOKEN,content));
+    }
+
+    public String ack1(){
+        String soup =  HttpUtil.doGet(soupUrl,null,null,null,false);
+        String text = String.format("早上好！快乐时间：%s",soup);
+        String content = "{\n" +
+                "    \"msgtype\": \"text\",\n" +
+                "    \"text\": {\n" +
+                "        \"content\": \"" + text +
+                "    }\n" +
+                "}";
+
+        System.out.println(content);
+        return content;
+    }
+
 }

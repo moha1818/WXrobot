@@ -26,15 +26,15 @@ public class RobotController {
 //    @Autowired
 //    private ElasticSearchService elasticSearchService;
 
-    @RequestMapping("/next")
-    public void next(){
-        //testScheduled.next();
+//    @RequestMapping("/next")
+//    public Object next(){
+//        //testScheduled.next();
 //        DrillColumn drill = new DrillColumn();
 //        drill.setElementName("a");
 //        drill.setElementQueryName("b");
 //        drill.setElementValue("c");
-        //return elasticSearchService.insert("dataextra",drill);
-    }
+//        return elasticSearchService.insert("dataextra",drill);
+//    }
 
 //    @RequestMapping("/get")
 //    public Object get(){
