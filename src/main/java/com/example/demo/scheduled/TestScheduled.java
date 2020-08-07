@@ -87,7 +87,7 @@ public class TestScheduled {
 
 
     //周一至周五上班时间
-    @Scheduled(cron = "0 15 9 ? * MON-FRI")
+    @Scheduled(cron = "00 15 9 ? * MON-FRI")
     public void everyDay() {
         String content = ack1();
         System.out.println(HttpUtil.doPost(SJZ_TOKEN,content));
@@ -96,10 +96,12 @@ public class TestScheduled {
     public String ack1(){
         String jt = getJtStr();
         String text = String.format("早上好！鸡汤时间：%s",jt);
+        String list = String.format("\"%s\"","@all");
         String content = "{\n" +
                 "    \"msgtype\": \"text\",\n" +
                 "    \"text\": {\n" +
-                "        \"content\": \"" + text +"\""+
+                "        \"content\": \"" + text +"\",\n" +
+                "        \"mentioned_mobile_list\":[" + list + "]\n" +
                 "    }\n" +
                 "}";
 
