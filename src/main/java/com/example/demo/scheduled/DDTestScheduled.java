@@ -3,8 +3,6 @@ package com.example.demo.scheduled;
 import com.example.demo.util.HttpUtil;
 import com.example.demo.util.PropertiesUtil;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import org.elasticsearch.common.Strings;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -21,7 +19,7 @@ import java.util.Map;
  **/
 @Component
 @EnableScheduling
-public class TestScheduled {
+public class DDTestScheduled {
     public static String WEBHOOK_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=bada4714-d432-49ac-86b3-090d6e016e43";
 
     public static String SJZ_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=6258d09a-6244-4858-95e0-54d738b2b2d7";
@@ -93,16 +91,17 @@ public class TestScheduled {
         System.out.println(HttpUtil.doPost(SJZ_TOKEN,content));
     }
 
-    public String ack1(){
+    public static String ack1(){
         String jt = getJtStr();
         String text = String.format("早上好！鸡汤时间：%s",jt);
-        String list = String.format("\"%s\"","@all");
-        String content = "{\n" +
-                "    \"msgtype\": \"text\",\n" +
+        String content = " {\n" +
+                "    \"at\": {\n" +
+                "        \"isAtAll\": true\n" +
+                "    },\n" +
                 "    \"text\": {\n" +
-                "        \"content\": \"" + text +"\",\n" +
-                "        \"mentioned_mobile_list\":[" + list + "]\n" +
-                "    }\n" +
+                "        \"content\":\""+text+"\"\n" +
+                "    },\n" +
+                "    \"msgtype\":\"text\"\n" +
                 "}";
 
         System.out.println(content);
@@ -111,7 +110,7 @@ public class TestScheduled {
 
 
     public static String ack2(){
-        String content = "{\"msgtype\": \"text\",\"text\": {\"content\":\"我就是我, 是不一样的烟火\"}}";
+        String content = ack1();
         HttpUtil.doPost("https://oapi.dingtalk.com/robot/send?access_token=d3319cd2208f6aa0e144e33c09abf272c8c0d811bebfa19d7fe88e68fb38b418",content);
         System.out.println(content);
         return content;
@@ -121,7 +120,7 @@ public class TestScheduled {
         ack2();
     }
 
-    private String getJtStr(){
+    private static String getJtStr(){
         String soup =  HttpUtil.doGet(soupUrl1,null,null,null,false);
         if(Strings.isNullOrEmpty(soup)){
             soup = HttpUtil.doGet(soupUrl,null,null,null,false);

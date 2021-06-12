@@ -15,11 +15,13 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
+import org.pentaho.di.core.SQLStatement;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeSet;
 
 /**
  * HTTP工具类
@@ -123,4 +125,9 @@ public final class HttpUtil {
         }
         return response;
     }
+
+    public static void main(String[] args) {
+
+    }
+
 }
