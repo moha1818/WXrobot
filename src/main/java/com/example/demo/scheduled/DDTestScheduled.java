@@ -8,6 +8,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
@@ -86,10 +89,41 @@ public class DDTestScheduled {
 
     //周一至周五上班时间
     @Scheduled(cron = "00 15 9 ? * MON-FRI")
-    public void everyDay() {
+    public void everyDay() throws Exception {
         String content = ack1();
         System.out.println(HttpUtil.doPost(SJZ_TOKEN,content));
+
+        //钉钉的消息提醒
+        String jt = getJtStr();
+        String text = String.format("早上好！鸡汤时间：%s",jt);
+        String jsondd = "{\n" +
+                "    \"at\": {\n" +
+                "        \"isAtAll\": true\n" +
+                "    },\n" +
+                "    \"text\": {\n" +
+                "        \"content\":\"" + text + "\"\n" +
+                "    },\n" +
+                "    \"msgtype\":\"text\"\n" +
+                "}";
+        HttpUtil.doPost(getUrl(), jsondd);
     }
+
+    public String getUrl() throws Exception {
+        Long timestamp = System.currentTimeMillis();
+        String secret = "SEC326cbb24dc59443bb8252fbfccd659d83658e90dc5a2aa82fbdbeb11185bfe1d";
+
+        String stringToSign = timestamp + "\n" + secret;
+        Mac mac = Mac.getInstance("HmacSHA256");
+        mac.init(new SecretKeySpec(secret.getBytes("UTF-8"), "HmacSHA256"));
+        byte[] signData = mac.doFinal(stringToSign.getBytes("UTF-8"));
+        String sign = URLEncoder.encode(new String(org.apache.commons.codec.binary.Base64.encodeBase64(signData)), "UTF-8");
+        System.out.println(sign);
+
+        String url = "https://oapi.dingtalk.com/robot/send?access_token=200f178f3e2cb43f6fb36eb47637e7f9e601588881c72c55abe0c62494cbbf6e&timestamp=%s&sign=%s";
+        url = String.format(url, timestamp, sign);
+        return url;
+    }
+
 
     public static String ack1(){
         String jt = getJtStr();
