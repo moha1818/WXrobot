@@ -35,56 +35,7 @@ public class DDTestScheduled {
     private static String[] MOBILES = {"15757116539","15728007839","18858090722","15067480436","18815287551","15258316988","17636218668","15867461151"};
 //    private int dayIndex = 3;
     private int weekIndex = 0;
-    //每周一
-    @Scheduled(cron = "0 00 9 ? * MON")
-    //@Scheduled(cron = "10 * * * * ?")
-    public void testTasks() {
-        System.out.println("******定时器启动*****");
-//        Calendar cal = Calendar.getInstance();
-//        cal.setTime(new Date());
-//        int dayWeek = cal.get(Calendar.DAY_OF_WEEK);
-//        //工作日
-//        if(dayWeek>1 && dayWeek<7){
-//            String content = ack();
-//            System.out.println(HttpUtil.doPost(WEBHOOK_TOKEN,content));
-//            if(dayWeek == 6){
-//                weekIndex = weekIndex == NAMES.length-1?0:weekIndex+1;
-//            }
-//            dayIndex = dayIndex == NAMES.length-1?0:dayIndex+1;
-//        }else {
-//            System.out.println("今天周末！！！");
-//        }
 
-        PropertiesUtil util = setweekIndex();
-        System.out.println(weekIndex);
-        String content = ack();
-        System.out.println(HttpUtil.doPost(WEBHOOK_TOKEN,content));
-        weekIndex = weekIndex == NAMES.length-1?0:weekIndex+1;
-        util.update(String.valueOf(weekIndex));
-    }
-
-    public PropertiesUtil setweekIndex(){
-        PropertiesUtil util = new PropertiesUtil();
-        util.read();
-        Map m = util.read();
-        weekIndex = Integer.parseInt(String.valueOf(m.get("dayIndex")));
-        return util;
-    }
-
-    public String ack(){
-        String text = String.format("这周的值日组长:%s",NAMES[weekIndex]);
-        String list = String.format("\"%s\"",MOBILES[weekIndex]);
-        String content = "{\n" +
-                "    \"msgtype\": \"text\",\n" +
-                "    \"text\": {\n" +
-                "        \"content\": \"" + text + "\",\n" +
-                "        \"mentioned_mobile_list\":[" + list + "]\n" +
-                "    }\n" +
-                "}";
-
-        System.out.println(content);
-        return content;
-    }
 
 
     //周一至周五上班时间

@@ -35,7 +35,7 @@ public class TestScheduled {
 //    private int dayIndex = 3;
     private int weekIndex = 0;
     //每周一
-    @Scheduled(cron = "0 00 9 ? * MON")
+//    @Scheduled(cron = "0 00 9 ? * MON")
     //@Scheduled(cron = "10 * * * * ?")
     public void testTasks() {
         System.out.println("******定时器启动*****");
@@ -71,8 +71,8 @@ public class TestScheduled {
     }
 
     public String ack(){
-        String text = String.format("这周的值日组长:%s",NAMES[weekIndex]);
-        String list = String.format("\"%s\"",MOBILES[weekIndex]);
+        String text = String.format("这周的值日组长:%s","XXXX");
+        String list = String.format("\"%s\"","XXXXX");
         String content = "{\n" +
                 "    \"msgtype\": \"text\",\n" +
                 "    \"text\": {\n" +
